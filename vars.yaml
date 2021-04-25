@@ -37,3 +37,7 @@ $ ansible-playbook four.yml -e CLI_URL=CLI.linkedin.com -e cli_url=cli.linkedin.
 
 
 ### LOCAL > GLOBAL >> CLI variables
+
+# When it comes to overriding the precedence is below,
+### CLI > LOCAL > GLOBAL
+
