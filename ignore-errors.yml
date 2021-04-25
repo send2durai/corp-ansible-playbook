@@ -1,0 +1,23 @@
+## This playbook is show you how to ignore errors during the plays,
+
+# ignore_errors is a module in ansible
+
+
+############ Playbook starts here #################
+
+- name: demo on ignore errors
+  hosts: all
+  tasks:
+    - name: Checking Tomcat status
+      shell: ps -ef | grep java | grep -v grep
+      register: OUT
+      ignore_errors: yes
+
+    - name: Tomcat start
+      debug:
+        msg: Starting Tomcat and result is {{ OUT.rc }}
+
+
+# Note: ps -ef | grep java | grep -v grep --> which means, you're searching jav process in a system OS.
+
+# ps -ef | grep java - First of all java process is not running, thought again youre piping. Means you'll get exit code of '1'.
