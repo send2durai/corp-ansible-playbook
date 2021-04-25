@@ -2,6 +2,15 @@
 
 ## Global Variable
 ## Local Variables
+## cli variable
+
+# Note: when you execute any vars playbook, you should also keep in the command level as below,
+
+$ ansible-playbook four.yml -e CLI_URL=cli.linkedin.com
+
+# if you want override the cli variable, while executing use below format
+
+$ ansible-playbook four.yml -e CLI_URL=CLI.linkedin.com -e cli_url=cli.linkedin.com
 
 ############################## Playbook starts here ##############################
 
@@ -12,13 +21,19 @@
   tasks: 
     - name: print the url
       debug:
-         msg: URL is {{ URL }}
+         msg: URL is {{ URL }}  ## Global variable
 
     - name: print the url from local to check the variable predence
       debug: 
          msg: URL is {{ URL }}
       vars:
-         URL: task.linkedin.com
+         URL: task.linkedin.com  ## Local variable
 
-Note: Always, when we keep global and local variables, local is first executed and then global vars.
-### LOCAL > GLOBAL vars
+    - name: print the url through cli
+      debug:
+         msg: URL is {{ CLI_URL }}
+      vars:
+         URL: cli.linkedin.com ## cli variable
+
+
+### LOCAL > GLOBAL >> CLI variables
