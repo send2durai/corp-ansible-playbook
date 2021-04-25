@@ -1,5 +1,13 @@
 ## This playbook is going to capture remote nodes uptime and disk usage.
 
+## Here are the remote nodes,
+[dev] ==> host groupnames
+10.0.0.10
+10.0.0.11
+
+
+############################## Playbook starts here ############################
+
 - name: play1
   hosts: all
   tasks:
@@ -9,7 +17,7 @@
 
     - name: Printing the uptime output
       debug:
-         msg: "{{ OUT.stdout }}"
+         msg: "{{ OUT.stdout_lines }}"
 
     - name: checking the file system of the remote nodes
       shell: df -T
@@ -17,10 +25,13 @@
 
     - name: print the df output
       debug:
-         msg: "{{ OUT.stdout }}"
+         msg: "{{ OUT.stdout_lines }}"
 
-    - name: 
+    - name: Just putting some heading of this overall playbook
       debug: 
-         msg: Welcome to my learning on Ansible
+         msg: Hello World! Welcome to my learning on Ansible
+
+
+# Note: when we use "{{ OUT.stdout_lines }} " the df output looks pretty
 
 Note: Here we're using shell,debug are the ansible modules
