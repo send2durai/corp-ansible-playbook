@@ -1,0 +1,24 @@
+## This playbook is to checking the variables. We have two types of it,
+
+## Global Variable
+## Local Variables
+
+############################## Playbook starts here ##############################
+
+- name: Demo on using variables in a playbook
+  hosts: all
+  vars:
+     URL: play.linkedin.com
+  tasks: 
+    - name: print the url
+      debug:
+         msg: URL is {{ URL }}
+
+    - name: print the url from local to check the variable predence
+      debug: 
+         msg: URL is {{ URL }}
+      vars:
+         URL: task.linkedin.com
+
+Note: Always, when we keep global and local variables, local is first executed and then global vars.
+### LOCAL > GLOBAL vars
