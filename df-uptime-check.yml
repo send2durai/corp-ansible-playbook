@@ -1,0 +1,26 @@
+## This playbook is going to capture remote nodes uptime and disk usage.
+
+- name: play1
+  hosts: all
+  tasks:
+    - name: checking the uptime of the remote nodes
+      shell: uptime
+      register: OUT
+
+    - name: Printing the uptime output
+      debug:
+         msg: "{{ OUT.stdout }}"
+
+    - name: checking the file system of the remote nodes
+      shell: df -T
+      register: OUT
+
+    - name: print the df output
+      debug:
+         msg: "{{ OUT.stdout }}"
+
+    - name: 
+      debug: 
+         msg: Welcome to my learning on Ansible
+
+Note: Here we're using shell,debug are the ansible modules
