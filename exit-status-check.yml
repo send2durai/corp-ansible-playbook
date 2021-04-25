@@ -18,3 +18,5 @@
     - name: print exist status
       debug:
          msg: Exit status is {{ STATUS }}
+
+## set_fact is the module to check out the exit status in linux OS
