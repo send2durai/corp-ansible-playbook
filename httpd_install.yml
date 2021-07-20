@@ -1,4 +1,5 @@
 ### Installing apache httpd packages on CentOs 7 machine using Ansible playbook,
+
 ---
   - name: "Installing apache on the localhost"
     hosts: localhost
@@ -9,8 +10,18 @@
       yum:
         name: httpd
         state: present
+    - name: "Copying static content to www folder"
+      ansible.builtin.copy:
+        src: /home/centos/my_scriptss/index.html
+        dest: /var/www/html/index.html
 
     - name: "Ensure httpd is running"
       service:
         name: httpd
         state: started
+
+    - name: "Testing the URL, post installation of httpd"
+      get_url:
+        url: http://localhost:80
+        dest: /var/www/html/index.html
+
