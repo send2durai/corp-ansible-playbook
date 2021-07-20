@@ -1,0 +1,16 @@
+### Installing apache httpd packages on CentOs 7 machine using Ansible playbook,
+---
+  - name: "Installing apache on the localhost"
+    hosts: localhost
+    become: yes
+    become_user: root
+    tasks:
+    - name: "Installing apache greater than 2.4 version"
+      yum:
+        name: httpd
+        state: present
+
+    - name: "Ensure httpd is running"
+      service:
+        name: httpd
+        state: started
