@@ -1,0 +1,17 @@
+### Removing httpd with it's related packages on Linux based Machines,
+
+---
+  - name: "Installing apache on the localhost"
+    hosts: localhost
+    become: yes
+    become_user: root
+    tasks:
+    - name: "Removing apache"
+      yum:
+        name: httpd
+        state: absent
+
+    - name: "Ensure httpd service is stopped"
+      service:
+        name: httpd
+        state: stopped
